@@ -5,22 +5,19 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name= "EMPLOYEE")
-public class Employee {
+@Table(name = "JOBS")
+public class Job {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int empId;
+    private int jobId;
 
-    private String empName;
+    private String jobName;
 
-    private Double empSalary;
-
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
-    private List<Job> jobs;
+    @ManyToOne
+    @JoinColumn(name = "emp_id", nullable = false)
+    private Employee employee;
 }
